@@ -6,7 +6,7 @@ categories: automation_testing iOS
 ---
 
 
-# Appium Instructions -- Quick Start
+## Appium Instructions -- Quick Start
 
 Appium is a framework to do UIAutomation testing on iOS and Android
 
@@ -22,41 +22,57 @@ Mac comes with Python and Ruby installed. But I do not recommend using inbuild r
 	
 * Install RVM(Ruby Version Manager) from [here](https://rvm.io/rvm/install)
 
-	*Only with Ruby* `\curl -sSL https://get.rvm.io | bash -s stable --ruby`
+	*Only with Ruby* 
+
+	`\curl -sSL https://get.rvm.io | bash -s stable --ruby`
 	
 * Install [Brew](http://brew.sh) if not installed
+	
 	`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-* Install Node.js `brew install node`
-* Install appium server 	`npm install -g appium`
+* Install Node.js 
 
-* Create a custom Gemset *(assumes RVM is installed)* `rvm gemset create appium`
+	`brew install node`
 
-* Install Appium gem `gem install appium_console`
+* Install appium server
+
+	`npm install -g appium`
+
+* Create a custom Gemset *(assumes RVM is installed)*
+
+	`rvm gemset create appium`
+
+* Install Appium gem
+
+	`gem install appium_console`
 	
-* Verify Installation was successful (You should see appium_console and appium_lib) `gem list|grep appium`
+* Verify Installation was successful (You should see appium_console and appium_lib)
+
+	`gem list|grep appium`
 
 * Download [App](https://developer.apple.com/library/ios/samplecode/UICatalog/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007710-Intro-DontLinkElementID_2) (if you havent yet)
 
 * Build app using following command in the folder where you will find *.xcodeproj for the UICatalog project. we will call this folder working folder
- `xcodebuild -configuration Release -target UICatalog -arch i386 -sdk iphonesimulator8.2`
+
+	`xcodebuild -configuration Release -target UICatalog -arch i386 -sdk iphonesimulator8.2`
  
 * Create appium.txt in your working folder. This file is read by Appium(appium_lib) as input.
 
 	Sample appium.txt showing how to use Appium Server Capabilities [caps](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md)
 	
->* `platformName = "iOS"`
->* `app = "./build/Release-iphonesimulator/UICatalog.app"`
->* `deviceName = "iPhone Simulator"`
+	+ `platformName = "iOS"`
+	+ `app = "./build/Release-iphonesimulator/UICatalog.app"`
+	+ `deviceName = "iPhone Simulator"`
 
 * Start appium server in seperate tab.( I use iTerm for terminal)
  
- `appium&`
+	`appium&`
  
 * Start Console
-> Goto folder where appium.txt is created. Ensure
+
+	Goto folder where appium.txt is created. Ensure
  
- `arc`
+	`arc`
  
 * Exploring Elements --
 
@@ -64,23 +80,27 @@ Mac comes with Python and Ruby installed. But I do not recommend using inbuild r
 
 		We look at only 4 commands
 
-	>  * Page_class -- This will give bird's eye view of iOS app structure
-> `page_class`
-> 
->  * Page Elements (`page`command) -- This will list all elements. Further elements can be explored like by name or by id
->
->	* `page`
->	* `page 'UIAStaticText' `
-> * Find Elements by name --
-> 
-> 	* `find('Egg Benedict')` (Returns element id)
->  	* `find('Egg Benedict').name`(Returns Name Attribute for element)
-> 
-> * Find Elements by id --
-> 	* `id('Egg').name`
-> 
-> * Ending Session --
-> 	* `x`
+		* Page_class -- This will give bird's eye view of iOS app structure
+		
+			`page_class`
+
+		* Page Elements (`page`command) -- This will list all elements. Further elements can be explored like by name or by id
+			
+			+ `page`
+			+ `page 'UIAStaticText' `
+		
+		* Find Elements by name --
+
+			+ `find('Egg Benedict')` (Returns element id)
+			+ `find('Egg Benedict').name`(Returns Name Attribute for element)
+
+		* Find Elements by id --
+			
+			+ `id('Egg').name`
+		
+		* Ending Session --
+		
+			+ `x`
 	
 	2. By Inspector -- Appium also provides with UIInspector. More info can be found [here](http://appium.io/slate/en/tutorial/ios.html?ruby#appium.app-inspector)
 
@@ -89,10 +109,13 @@ Mac comes with Python and Ruby installed. But I do not recommend using inbuild r
 
 * *.. "`initialize': platformName must be set. Not found in options:"*
 
->Have a look at your appium.txt. Ensure all parameters are set under quotes.Refer Sample appium.txt [files](https://github.com/mrudulp/iOSSrc/tree/master/autotest/appiumTest/sampleApps/UICatalogObj_Swift/Objective-C/tests/appiumSample)
+	Have a look at your appium.txt. Ensure all parameters are set under quotes.Refer Sample appium.txt [files](https://github.com/mrudulp/iOSSrc/tree/master/autotest/appiumTest/sampleApps/UICatalogObj_Swift/Objective-C/tests/appiumSample)
 
 * "Message: A new session could not be created. (Original error: Could not initialize ideviceinstaller; make sure it is installed and works on your system)"
-> Install ideviceinstaller from brew. Usually this is not required since appium is supposed to install that. But if it is still missing -- `brew install ideviceinstaller`
+
+	Install ideviceinstaller from brew. Usually this is not required since appium is supposed to install that. But if it is still missing --
+
+	`brew install ideviceinstaller`
 
  
 ## References

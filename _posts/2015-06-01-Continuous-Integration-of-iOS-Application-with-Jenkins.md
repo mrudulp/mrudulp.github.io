@@ -5,9 +5,6 @@ date:   2015-06-01 08:00:00
 categories: automation_testing iOS continuous_integration jenkins
 ---
 
-# Continuous Integration of iOS Application with Jenkins.
-
-###(These are partial instructions, these would be updated soon.)
 
 We are going to look at Continuous Integration of iOS Application with Jenkins CI. We are going to use Appium for Test Automation and Robot Framework to write the tests.
 
@@ -15,9 +12,11 @@ These instructions were written for 1.6.614 version of Jenkins
 
 ## Installation
 
-* We will install [Jenkins on Mac]({% post_url 2015-05-30-Installing-Jenkins-On-Mac %})
-* Install Appium by following instructions in previous [blog](% post_url 2015-05-28-Getting-Started-With-Appium %)
-* Robot Installation *Todo*
+* We will install Jenkins on Mac. Refer previous [blog]({% post_url 2015-05-30-Installing-Jenkins-On-Mac %}) for detailed instructions.
+* Install Appium by following instructions in previous [blog](% post_url 2015-05-28-Getting-Started-With-Appium %) for detailed instructions.
+* Robot Installation. For Detailed [Instructions](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#installation-instructions)
+
+	`pip install robotframework`
  
 ## Configuration
 
@@ -64,14 +63,15 @@ Now your security is setup and you are good to go.
 * Enter "Description", Github project link,  
 * Under "Build Triggers" Section -> Check 'Build when a change is pushed to GitHub'
 * Under "Build Section" -> Add Build Step with following commands
-`source /etc/profile
-BUILD_ID=dontKillMe appium&
-BUILD_DEST_PATH=${WORKSPACE}/autotest/appiumTest/sampleApps/UICatalogObj_Swift/Objective-C
-cd $BUILD_DEST_PATH
-rm -rf build
-xcodebuild -configuration Release -target UICatalog -arch i386 -sdk iphonesimulator8.2
-pybot <Path of Robot Tests> for eg: tests/robotSample/iosUICatlog.robot
-pkill node`
+	+ `source /etc/profile`
+	+ `BUILD_ID=dontKillMe appium&`
+	+ `BUILD_DEST_PATH=${WORKSPACE}/autotest/appiumTest/sampleApps/UICatalogObj_Swift/Objective-C`
+	+ `cd $BUILD_DEST_PATH`
+	+ `rm -rf build`
+	+ `xcodebuild -configuration Release -target UICatalog -arch i386 -sdk iphonesimulator8.2`
+	+ `pybot <Path of Robot Tests>` (for eg: tests/robotSample/iosUICatlog.robot)
+	+ `pkill node` ( Note we are killing node & not appium. It is node that initiates appium)
+	
 * Under "Post-Build Actions" -> Add "Publish Robot Framework test results"
 * Set Thresholds
 * Now "Save" configuration settings.

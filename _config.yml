@@ -1,6 +1,6 @@
 # Site settings
 title: Mrudul's Running Blog.
-email: mrudulpen (at) hotmail.com
+email: mrudulpen (at) gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   This blog captures all Tips and Tricks used to get about my job done.
 baseurl: "" # the subpath of your site, e.g. /blog/
