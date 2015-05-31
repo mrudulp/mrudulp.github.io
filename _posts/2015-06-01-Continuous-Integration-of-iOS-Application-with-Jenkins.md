@@ -7,14 +7,16 @@ categories: automation_testing iOS continuous_integration jenkins
 
 # Continuous Integration of iOS Application with Jenkins.
 
+###(These are partial instructions, these would be updated soon.)
+
 We are going to look at Continuous Integration of iOS Application with Jenkins CI. We are going to use Appium for Test Automation and Robot Framework to write the tests.
 
 These instructions were written for 1.6.614 version of Jenkins
 
 ## Installation
 
-* We will install [Jenkins on Mac](#Link??)
-* Appium Installation *Todo*
+* We will install [Jenkins on Mac]({% post_url 2015-05-30-Installing-Jenkins-On-Mac %})
+* Install Appium by following instructions in previous [blog](% post_url 2015-05-28-Getting-Started-With-Appium %)
 * Robot Installation *Todo*
  
 ## Configuration
@@ -58,6 +60,22 @@ Now your security is setup and you are good to go.
 * Click *"New Item"*
 * Select *"Free-Style"*
 * Enter Name for the Job **without spaces**
+* Now Goto MyViews -> <New Item> -> Configure
+* Enter "Description", Github project link,  
+* Under "Build Triggers" Section -> Check 'Build when a change is pushed to GitHub'
+* Under "Build Section" -> Add Build Step with following commands
+`source /etc/profile
+BUILD_ID=dontKillMe appium&
+BUILD_DEST_PATH=${WORKSPACE}/autotest/appiumTest/sampleApps/UICatalogObj_Swift/Objective-C
+cd $BUILD_DEST_PATH
+rm -rf build
+xcodebuild -configuration Release -target UICatalog -arch i386 -sdk iphonesimulator8.2
+pybot <Path of Robot Tests> for eg: tests/robotSample/iosUICatlog.robot
+pkill node`
+* Under "Post-Build Actions" -> Add "Publish Robot Framework test results"
+* Set Thresholds
+* Now "Save" configuration settings.
+* Now you can press "Build Now" on the left pane and your CI system is up & running. Everytime you push code to github, your CI will detect the change and start building and running tests.
 
 ## Troubleshooting
 

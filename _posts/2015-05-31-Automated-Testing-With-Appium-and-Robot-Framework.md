@@ -11,10 +11,11 @@ categories: automation_testing iOS
 
 (These instructions assume python is installed. This was tested with Mac so, they might vary for other OS)
 
-1. Install Appium. For Detailed [Instructions](#Appium Link)
+1. Install Appium. For Detailed [Instructions]({%post_url 2015-05-28-Getting-Started-With-Appium %})
 2. Install pip for Python. [Instructions](https://pip.pypa.io/en/latest/installing.html)
-3. Install Robot. For Detailed [Instructions](#Robot Link)
-4. Install [Appium Library](https://github.com/jollychang/robotframework-appiumlibrary)
+3. Install Robot. For Detailed [Instructions](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#installation-instructions)
+	`pip install robotframework`
+4. Install [Appium Library](https://github.com/jollychang/robotframework-appiumlibrary) from the link or use the following command.
 
 	`pip install robotframework-appiumlibrary`
  
