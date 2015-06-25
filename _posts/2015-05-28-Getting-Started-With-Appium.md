@@ -79,7 +79,7 @@ Mac comes with Python and Ruby installed. But I do not recommend using inbuild r
  
 	`arc`
  
- ### Running with Device
+### Running with Device
  * Build app --
 	
 	* Goto (working) folder where you will find *.xcodeproj for the UICatalog project.
