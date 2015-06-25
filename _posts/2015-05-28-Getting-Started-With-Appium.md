@@ -52,9 +52,14 @@ Mac comes with Python and Ruby installed. But I do not recommend using inbuild r
 
 * Download [App](https://developer.apple.com/library/ios/samplecode/UICatalog/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007710-Intro-DontLinkElementID_2) (if you havent yet)
 
-* Build app using following command in the folder where you will find *.xcodeproj for the UICatalog project. we will call this folder working folder
+### Running with Simulator
+* Build app --
+	* Goto (working) folder where you will find *.xcodeproj for the UICatalog project.
+	* Check the sdks available on the disc by issuing command
+	`xcodebuild -showsdks`
+	* Build from command line using following commands. (Replace <simulator sdk> with foreg: iphonesimulator8.3)
 
-	`xcodebuild -configuration Release -target UICatalog -arch i386 -sdk iphonesimulator8.2`
+	`xcodebuild -configuration Release -target UICatalog -arch i386 -sdk <simulator sdk>`
  
 * Create appium.txt in your working folder. This file is read by Appium(appium_lib) as input.
 
@@ -66,7 +71,7 @@ Mac comes with Python and Ruby installed. But I do not recommend using inbuild r
 
 * Start appium server in seperate tab.( I use iTerm for terminal)
  
-	`appium&`
+	`appium`
  
 * Start Console
 
@@ -74,6 +79,42 @@ Mac comes with Python and Ruby installed. But I do not recommend using inbuild r
  
 	`arc`
  
+ ### Running with Device
+ * Build app --
+	
+	* Goto (working) folder where you will find *.xcodeproj for the UICatalog project.
+	* Check the sdks available on the disc by issuing command
+	`xcodebuild -showsdks`
+	* Build from command line using following commands. 
+		
+		Replace
+		
+		+  <iphone sdk> with foreg: iphoneos8.3
+		+  <Dev Certificate Name> with certificate found in keychain foreg: "iPhone Developer: abc(C31234)"
+		+  <Provisioning Profile uuid> with provisioning profile found in keychain or use iPhone Configuration Utility foreg: "1234-efgh-ghjr-port"
+
+	`xcodebuild -configuration Release -target UICatalog -sdk <iphone sdk> CODE_SIGN_IDENTITY="<Dev Certificate Name>" PROVISIONING_PROFILE="<Provisioning Profile uuid>"`
+ 
+* Create appium.txt in your working folder. This file is read by Appium(appium_lib) as input.
+
+	Sample appium.txt showing how to use Appium Server Capabilities [caps](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md)
+	
+	+ `platformName = "iOS"`
+	+ `app = "./build/Release-iphoneos/UICatalog.app"`
+	+ `deviceName = "iPhone"`
+
+* Start appium server in seperate tab.( I use iTerm for terminal)
+	
+	(find device uuid either using Xcode -> Orgnaniser or using iPhone Configuration Utility)
+
+	`appium -U <device uuid>`
+ 
+* Start Console
+
+	Goto folder where appium.txt is created. Ensure
+ 
+	`arc`
+
 * Exploring Elements --
 
 	1. By Command line -- Refer [here](http://appium.io/slate/en/tutorial/ios.html?ruby#page-command) and [here](https://saucelabs.com/resources/appium-bootcamp/appium-bootcamp-2013-chapter-3-interrogate-your-app)
